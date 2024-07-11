@@ -1,0 +1,42 @@
+<h1 class="text-center">
+    @if(contact){
+        Editar
+    }@else{
+        Nuevo
+    } Contacto
+</h1>
+<div class="row row-cols-2 justify-content-center">
+    @if (form) {
+        <form [formGroup]="form" (ngSubmit)="save()" method="post">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" 
+                formControlName="nombre">
+                @if (form.get('nombre')?.hasError('required')) {
+                    <p class="invalid-feedback d-block">El nombre es obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo</label>
+                <input type="text" class="form-control" id="email" name="email"
+                formControlName="email">
+                @if (form.get('email')?.hasError('required')) {
+                    <p class="invalid-feedback d-block">El Email es obligatorio</p>
+                }
+                @if (form.get('email')?.hasError('email')) {
+                    <p class="invalid-feedback d-block">El Email es invalido</p>
+                }
+            </div>
+            <div class="mb-3 text-end">
+                <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
+                <button class="btn btn-primary ms-2">
+                    @if(contact){
+                        Actualizar
+                    }@else{
+                        Crear
+                    } Contacto
+                </button>
+            </div>
+        </form>
+    }
+</div>

@@ -1,0 +1,35 @@
+<div class="row">
+<h1 class="title">Lista de Usuarios</h1>
+    <div class="text-end">
+        <button class="btn btn-primary" routerLink="new">Nuevo Usuario</button>
+    </div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id Usuario</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Contraseña</th>
+            <th>Telefono</th>
+            <th>Fecha Registro</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (usuario of usuarios; track usuario.id) {
+            <tr>
+                <td>{{usuario.id}}</td>
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.pws}}</td>
+                <td>{{usuario.telefono}}</td>
+                <td>{{usuario.fechaRegistro |date:'dd/MM/yyyy hh:mm a'}}</td>
+                <td>
+                    <button class="btn btn-primary" [routerLink]="['edit/',usuario.id]">Editar</button>
+                    <button class="btn btn-danger" (click)="deleteUsuario(usuario)">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
